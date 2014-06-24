@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Autokey - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-build_tabula_recta">#build_tabula_recta</a>
+    
+    <li ><a href="#method-i-decrypt">#decrypt</a>
+    
+    <li ><a href="#method-i-encrypt">#encrypt</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Autokey">
+  <h1 id="module-Autokey" class="module">
+    module Autokey
+  </h1>
+
+  <section class="description">
+    
+<p>Encryption/decryption using autokey ciphers (<a
+href="http://en.wikipedia.org/wiki/Autokey_cipher">en.wikipedia.org/wiki/Autokey_cipher</a>)</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-build_tabula_recta" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build_tabula_recta</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Public: generates the tabula recta needed to encrypt text via autokey
+cipher.</p>
+
+<h3 id="method-i-build_tabula_recta-label-Parameter%28s%29">Parameter(s)<span><a href="#method-i-build_tabula_recta-label-Parameter%28s%29">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>None.</p>
+
+<h3 id="method-i-build_tabula_recta-label-Return+Value">Return Value<span><a href="#method-i-build_tabula_recta-label-Return+Value">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>Array</code>: a two-dimensional array of characters (26 x 26).</p>
+
+<h3 id="method-i-build_tabula_recta-label-Example">Example<span><a href="#method-i-build_tabula_recta-label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>build_tabula_recta</code></p>
+
+<p>(See <a
+href="http://en.wikipedia.org/wiki/Tabula_recta">en.wikipedia.org/wiki/Tabula_recta</a>
+for an example.)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="build_tabula_recta-source">
+            <pre><span class="ruby-comment"># File lib/dekryptos/autokey.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_tabula_recta</span>
+  <span class="ruby-identifier">table</span> = []
+  <span class="ruby-identifier">row</span> = <span class="ruby-identifier">alphabet</span>
+
+  <span class="ruby-identifier">alphabet</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">letter</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">table</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">rotate</span>(<span class="ruby-identifier">row</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">letter</span>))
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">table</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-decrypt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">decrypt</span><span
+            class="method-args">(ciphertext, table, keyword)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Public: decrypts ciphertext via autokey cipher.</p>
+
+<p>For each pair formed by the i-th index of the key and ciphertext, we look
+up the ciphertext letter in the key letter row and add the corresponding
+letter from the top row to the plaintext. Because the text is enciphered
+with itself, we continuously append the deciphered text to the key as we go
+along.</p>
+
+<h3 id="method-i-decrypt-label-Parameter%28s%29">Parameter(s)<span><a href="#method-i-decrypt-label-Parameter%28s%29">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>ciphertext</code> - <code>String</code>: the text to be decrypted.
+<code>table</code> - <code>Array</code>: the table generated by
+<code>build_tabula_recta</code>. <code>keyword</code> -
+<code>String</code>: the keyword used to encrypt the text.</p>
+
+<h3 id="method-i-decrypt-label-Return+Value">Return Value<span><a href="#method-i-decrypt-label-Return+Value">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>String</code>: the decrypted text.</p>
+
+<h3 id="method-i-decrypt-label-Example">Example<span><a href="#method-i-decrypt-label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>+decrypt(&#39;KKRPVYSTWTWP&#39;, <a
+href="Autokey.html#method-i-build_tabula_recta">#build_tabula_recta</a>,
+&#39;KRYPTOS&#39;)+ +=&gt; “ATTACKATDAWN”+</p>
+          
+          
+
+          
+          <div class="method-source-code" id="decrypt-source">
+            <pre><span class="ruby-comment"># File lib/dekryptos/autokey.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">decrypt</span>(<span class="ruby-identifier">ciphertext</span>, <span class="ruby-identifier">table</span>, <span class="ruby-identifier">keyword</span>)
+  <span class="ruby-identifier">plaintext</span> = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">ciphertext</span>.<span class="ruby-identifier">upcase!</span>
+  <span class="ruby-identifier">keyword</span>.<span class="ruby-identifier">upcase!</span>
+
+  <span class="ruby-identifier">key</span> = (<span class="ruby-identifier">keyword</span>).<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>)
+
+  <span class="ruby-identifier">ciphertext</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39;?&#39;</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">letter</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">plaintext</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">table</span>[<span class="ruby-value">0</span>][<span class="ruby-identifier">table</span>[<span class="ruby-identifier">table</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">key</span>[<span class="ruby-identifier">index</span>])].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">letter</span>)]
+    <span class="ruby-identifier">key</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">table</span>[<span class="ruby-value">0</span>][<span class="ruby-identifier">table</span>[<span class="ruby-identifier">table</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">key</span>[<span class="ruby-identifier">index</span>])].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">letter</span>)]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">plaintext</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-encrypt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">encrypt</span><span
+            class="method-args">(plaintext, table, keyword)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Public: encrypts plaintext via autokey cipher.</p>
+
+<p>We generate our key by prepending the keyword to the plaintext. Then, for
+each pair formed by the i-th index of the key and the plaintext, we look up
+that (row, column) coordinate in the tabula recta and add it to the
+ciphertext.</p>
+
+<h3 id="method-i-encrypt-label-Parameter%28s%29">Parameter(s)<span><a href="#method-i-encrypt-label-Parameter%28s%29">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>plaintext</code> - <code>String</code>: the text to be encrypted.
+<code>table</code> - <code>Array</code>: the table generated by
+<code>build_tabula_recta</code>. <code>keyword</code> -
+<code>String</code>: the keyword to be prepended to the plaintext to form
+the key.</p>
+
+<h3 id="method-i-encrypt-label-Return+Value">Return Value<span><a href="#method-i-encrypt-label-Return+Value">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>String</code>: the encrypted text.</p>
+
+<h3 id="method-i-encrypt-label-Example">Example<span><a href="#method-i-encrypt-label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>+encrypt(&#39;ATTACKATDAWN&#39;, <a
+href="Autokey.html#method-i-build_tabula_recta">#build_tabula_recta</a>,
+&#39;KRYPTOS&#39;)+ +=&gt; “KKRPVYSTWTWP”+</p>
+          
+          
+
+          
+          <div class="method-source-code" id="encrypt-source">
+            <pre><span class="ruby-comment"># File lib/dekryptos/autokey.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">encrypt</span>(<span class="ruby-identifier">plaintext</span>, <span class="ruby-identifier">table</span>, <span class="ruby-identifier">keyword</span>)
+  <span class="ruby-identifier">ciphertext</span> = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">plaintext</span>.<span class="ruby-identifier">upcase!</span>
+  <span class="ruby-identifier">keyword</span>.<span class="ruby-identifier">upcase!</span>
+
+  <span class="ruby-identifier">key</span> = (<span class="ruby-identifier">keyword</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">plaintext</span>).<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>)
+
+  <span class="ruby-identifier">plaintext</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39;?&#39;</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">letter</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">ciphertext</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">table</span>[<span class="ruby-identifier">table</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">letter</span>)][<span class="ruby-identifier">table</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">key</span>[<span class="ruby-identifier">index</span>])]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">ciphertext</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

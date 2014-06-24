@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>README - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-D+E+K+%D0%AF+Y+P+T+O+S">D E K Я Y P T O S</a>
+    <li><a href="#label-About">About</a>
+    <li><a href="#label-Dependencies">Dependencies</a>
+    <li><a href="#label-Installation">Installation</a>
+    <li><a href="#label-Contributing">Contributing</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./README_md.html">README</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.md">
+
+<h1 id="label-D+E+K+%D0%AF+Y+P+T+O+S">D E K Я Y P T O S<span><a href="#label-D+E+K+%D0%AF+Y+P+T+O+S">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<h2 id="label-About">About<span><a href="#label-About">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>These are little bits o&#39; Ruby magic I&#39;ve been using to mess around
+with decrypting parts of the <a
+href="http://en.wikipedia.org/wiki/Kryptos">Kryptos sculpture</a>.</p>
+
+<h2 id="label-Dependencies">Dependencies<span><a href="#label-Dependencies">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<ul><li>
+<p>Ruby (ideally 2.0+)</p>
+</li></ul>
+
+<h2 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Eventually, this&#39;ll be available on <a
+href="http://rubygems.org/">RubyGems</a> with some fancy command line bells
+&amp; whistles. Right now it&#39;s probably easiest to include the files as
+you need them:</p>
+
+<pre class="ruby">$ <span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">github</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">ericqweinstein</span><span class="ruby-operator">/</span><span class="ruby-identifier">dekryptos</span>
+$ <span class="ruby-identifier">cd</span> <span class="ruby-identifier">dekryptos</span>
+$ <span class="ruby-identifier">irb</span>
+<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">load</span> <span class="ruby-string">&#39;lib/dekryptos/vigenere.rb&#39;</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">include</span> <span class="ruby-constant">Vigenere</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Object</span>
+<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">t</span> = <span class="ruby-identifier">build_table</span>(<span class="ruby-string">&#39;KRYPTOS&#39;</span>, <span class="ruby-string">&#39;PALIMPSEST&#39;</span>)
+<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-comment"># Lots of output</span>
+<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">encrypt</span>(<span class="ruby-string">&#39;ATTACKATDAWN&#39;</span>, <span class="ruby-identifier">t</span>, <span class="ruby-string">&#39;ABSCISSA&#39;</span>)
+=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;DEUVRPGIGHHB&quot;</span>
+<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">decrypt</span>(<span class="ruby-identifier">_</span>, <span class="ruby-identifier">t</span>, <span class="ruby-string">&#39;ABSCISSA&#39;</span>)
+=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;ATTACKATDAWN&quot;</span>
+</pre>
+
+<h2 id="label-Contributing">Contributing<span><a href="#label-Contributing">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<ol><li>
+<p>Branch (<code>git checkout -b fancy-new-feature</code>)</p>
+</li><li>
+<p>Commit (<code>git commit -m &quot;Fanciness!&quot;</code>)</p>
+</li><li>
+<p>Lint (<code>bundle exec rake rubocop</code>)</p>
+</li><li>
+<p>Test (<code>bundle exec rake spec</code>)</p>
+</li><li>
+<p>Generate documentation (<code>bundle exec rake rdoc</code>)</p>
+</li><li>
+<p>Push (<code>git push origin fancy-new-feature</code>)</p>
+</li><li>
+<p>Ye Olde Pulle Request</p>
+</li></ol>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

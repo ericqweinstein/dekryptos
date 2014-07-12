@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby -w
+# encoding: UTF-8
+
+# Author:: Eric Weinstein
+# Copyright:: (c) 2014 Eric Weinstein
+# License:: MIT (see LICENSE)
+
+require 'optparse'
+require 'ostruct'
+require_relative '../lib/dekryptos'
+
+class Dekrypt
+  def self.parse(args)
+    options = OpenStruct.new
+
+    opt_parser = OptionParser.new do |opts|
+      opts.banner = 'Usage: dekrypt -t TEXT -k KEYS -c CIPHER'
+      opts.separator ''
+      opts.separator 'Running dekryptos with the dekrypt command:'
+      opts.separator '  TEXT is a block of text (without spaces or punctuation)'
+      opts.separator '  that you would like to decrypt.'
+      opts.separator ''
+      opts.separator '  KEYS is a list of comma-delimited words to be used'
+      opts.separator '  as keys in your deciphering.'
+      opts.separator ''
+      opts.separator '  CIPHER is the name of the cipher you would like to use.'
+      opts.separator '  Supported ciphers: autokey, monoalphabetic, playfair,'
+      opts.separator '  transposition, vigenere.'
+      opts.separator ''
+
+      opts.on('-h', '--help', 'Display this screen') do
+        puts opt_parser
+        exit
+      end
+
+      opts.on('-t t', '--text t', String, 'Enter ciphertext') do |text|
+        options.text = text
+      end
+
+      opts.on('-k a,b,c', '--keys a,b,c', Array, 'Enter key(s)') do |key|
+        options.keys = key
+      end
+
+      opts.on('-c c', '--cipher c', String, 'Enter cipher name') do |cipher|
+        options.cipher = cipher
+      end
+    end
+
+    begin opt_parser.parse!(args)
+      cipher = options.cipher.capitalize
+      self.class.send(:include, Object.const_get(cipher))
+
+      case cipher
+      when 'Autokey'
+        puts decrypt(options.text, build_tabula_recta, options.keys.first)
+      when 'Monoalphabetic'
+        puts rot_13(options.text)
+      when 'Playfair'
+        puts decrypt(options.text, build_table(options.keys.first))
+      when 'Transposition'
+        puts decrypt(options.text, options.keys.first.to_i)
+      when 'Vigenere'
+        key_one = options.keys.first
+        key_two = options.keys.last
+        puts decrypt(options.text, build_table(key_one, key_two), key_two)
+      else
+        fail "[!] Unknown cipher: #{options.cipher}"
+      end
+    rescue => e
+      msg = "[!] An error occurred: #{e.message}\n"
+      msg << "#{e.backtrace.join("\n")}\n\n"
+      msg << "Run dekrypt -h for help."
+      abort(msg)
+    end
+    options
+  end
+end
+
+Dekrypt.parse(ARGV)

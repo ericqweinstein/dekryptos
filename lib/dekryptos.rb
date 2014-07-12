@@ -2,9 +2,10 @@
 
 # Author:: Eric Weinstein
 
-require 'dekryptos/autokey'
-require 'dekryptos/kryptos'
-require 'dekryptos/monoalphabetic'
-require 'dekryptos/playfair'
-require 'dekryptos/transposition'
-require 'dekryptos/vigenere'
+require_relative 'dekryptos/analysis'
+require_relative 'dekryptos/autokey'
+require_relative 'dekryptos/kryptos'
+require_relative 'dekryptos/monoalphabetic'
+require_relative 'dekryptos/playfair'
+require_relative 'dekryptos/transposition'
+require_relative 'dekryptos/vigenere'

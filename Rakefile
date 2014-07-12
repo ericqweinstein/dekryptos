@@ -1,5 +1,6 @@
 #!/usr/bin/env rake
 # encoding: UTF-8
+
 require 'rdoc/task'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'

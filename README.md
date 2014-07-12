@@ -1,6 +1,8 @@
 D E K Я Y P T O S
 ===================
 
+[![Build Status](https://travis-ci.org/ericqweinstein/dekryptos.svg)](https://travis-ci.org/ericqweinstein/dekryptos)
+
 ## About
 These are little bits o' Ruby magic I've been using to mess around with decrypting parts of the [Kryptos sculpture](http://en.wikipedia.org/wiki/Kryptos).
 

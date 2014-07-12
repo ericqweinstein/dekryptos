@@ -43,7 +43,7 @@ module Kryptos
   'QSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUH'\
   'UAUEKCAR'
 
-  # == Example Tables
+  # === Example Tables
   #
   # This is an example of a Vigenere cipher table.
   EXAMPLE_VIGENERE_TABLE = [

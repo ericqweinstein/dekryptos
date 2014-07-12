@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Analysis - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-anagram">#anagram</a>
+    
+    <li ><a href="#method-i-anagram-3F">#anagram?</a>
+    
+    <li ><a href="#method-i-factor">#factor</a>
+    
+    <li ><a href="#method-i-frequency">#frequency</a>
+    
+    <li ><a href="#method-i-ioc">#ioc</a>
+    
+    <li ><a href="#method-i-vowels">#vowels</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Analysis">
+  <h1 id="module-Analysis" class="module">
+    module Analysis
+  </h1>
+
+  <section class="description">
+    
+<p>Tools for analyzing suggested <a href="Kryptos.html">Kryptos</a> solutions.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-anagram" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">anagram</span><span
+            class="method-args">(text)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Public: Provides all anagrams for a given word.</p>
+
+<h3 id="method-i-anagram-label-Parameter%28s%29">Parameter(s)<span><a href="#method-i-anagram-label-Parameter%28s%29">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>text</code> - <code>String</code>: The text to anagram.</p>
+
+<h3 id="method-i-anagram-label-Return+Value">Return Value<span><a href="#method-i-anagram-label-Return+Value">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>+Array&lt;String&gt;+: A list of anagrams. rubocop: disable MethodLength,
+UnderscorePrefixedVariableName</p>
+          
+          
+
+          
+          <div class="method-source-code" id="anagram-source">
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">anagram</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">head</span>, <span class="ruby-identifier">tail</span> = [], <span class="ruby-identifier">text</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-identifier">stack</span> = [[<span class="ruby-identifier">head</span>, <span class="ruby-identifier">tail</span>]]
+  <span class="ruby-identifier">result</span> = []
+
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">stack</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">head</span>, <span class="ruby-identifier">tail</span> = <span class="ruby-identifier">stack</span>.<span class="ruby-identifier">pop</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">tail</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">zero?</span>
+      <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">head</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">tail</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">_tail</span> = <span class="ruby-identifier">tail</span>.<span class="ruby-identifier">dup</span>
+        <span class="ruby-identifier">curr</span>  = <span class="ruby-identifier">_tail</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">i</span>)
+        <span class="ruby-identifier">_head</span> = <span class="ruby-identifier">head</span>.<span class="ruby-identifier">dup</span>
+        <span class="ruby-identifier">_head</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">curr</span>
+        <span class="ruby-identifier">stack</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">_head</span>, <span class="ruby-identifier">_tail</span>]
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">map!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;&#39;</span>) }
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">uniq!</span>
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-anagram-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">anagram?</span><span
+            class="method-args">(phrase_one, phrase_two)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Public: Checks whether one word or phrase is an anagram of another.</p>
+
+<h3 id="method-i-anagram-3F-label-Parameter%28s%29">Parameter(s)<span><a href="#method-i-anagram-3F-label-Parameter%28s%29">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>phrase_one</code> - <code>String</code>: A word or phrase.
+<code>phrase_two</code> - <code>String</code>: A word or phrase that may be
+an anagram of <code>phrase_one</code>.</p>
+
+<h3 id="method-i-anagram-3F-label-Return+Value">Return Value<span><a href="#method-i-anagram-3F-label-Return+Value">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>Boolean</code>: True if one phrase is an anagram of the other, false
+otherwise.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="anagram-3F-source">
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">anagram?</span>(<span class="ruby-identifier">phrase_one</span>, <span class="ruby-identifier">phrase_two</span>)
+  <span class="ruby-identifier">phrase_one</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">phrase_two</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">sort</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-factor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">factor</span><span
+            class="method-args">(n)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Public: Provides all factors of a given number.</p>
+
+<h3 id="method-i-factor-label-Parameter%28s%29">Parameter(s)<span><a href="#method-i-factor-label-Parameter%28s%29">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>n</code> - <code>Integer</code>: The number to factor.</p>
+
+<h3 id="method-i-factor-label-Return+Value">Return Value<span><a href="#method-i-factor-label-Return+Value">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>+Array&lt;Integer&gt;+: A list of factors.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="factor-source">
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">factor</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-identifier">factors</span> = []
+  (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">n</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">factors</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">factors</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-frequency" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">frequency</span><span
+            class="method-args">(text)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Public: Performs frequency analysis on the provided text.</p>
+
+<h3 id="method-i-frequency-label-Parameter%28s%29">Parameter(s)<span><a href="#method-i-frequency-label-Parameter%28s%29">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>text</code> - <code>String</code>: The text to analyze.</p>
+
+<h3 id="method-i-frequency-label-Return+Value">Return Value<span><a href="#method-i-frequency-label-Return+Value">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>+Hash&lt;String, Integer&gt;+: A hash representing the letter frequencies.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="frequency-source">
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">frequency</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">text</span>  = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s*/</span>, <span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-identifier">chars</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-identifier">freqs</span> = <span class="ruby-constant">Hash</span>[(<span class="ruby-string">&#39;a&#39;</span><span class="ruby-operator">..</span><span class="ruby-string">&#39;z&#39;</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">zip</span>([<span class="ruby-value">0</span>] <span class="ruby-operator">*</span> <span class="ruby-value">26</span>)]
+
+  <span class="ruby-identifier">chars</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">freqs</span>[<span class="ruby-identifier">c</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">freqs</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ioc" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ioc</span><span
+            class="method-args">(text)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Public: Calculates the index of coincidence for the given text (see <a
+href="http://en.wikipedia.org/wiki">en.wikipedia.org/wiki</a>/
+Index_of_coincidence).</p>
+
+<h3 id="method-i-ioc-label-Parameter%28s%29">Parameter(s)<span><a href="#method-i-ioc-label-Parameter%28s%29">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>text</code> - <code>String</code>: The text to analyze.</p>
+
+<h3 id="method-i-ioc-label-Return+Value">Return Value<span><a href="#method-i-ioc-label-Return+Value">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>Float</code>: The index of coincidence for the text.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ioc-source">
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ioc</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">c</span>     = <span class="ruby-value">26.0</span>
+  <span class="ruby-identifier">freqs</span> = <span class="ruby-identifier">frequency</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">n</span>     = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">length</span>
+
+  <span class="ruby-identifier">f</span> = <span class="ruby-identifier">freqs</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">reduce</span>(<span class="ruby-value">0</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">e</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">e</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)) }
+  <span class="ruby-identifier">f</span> <span class="ruby-operator">/</span> ((<span class="ruby-identifier">n</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">n</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)) <span class="ruby-operator">/</span> <span class="ruby-identifier">c</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-vowels" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vowels</span><span
+            class="method-args">(text)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Public: Calculates the percentage of text composed of vowels. (Y is not
+included as a vowel.)</p>
+
+<h3 id="method-i-vowels-label-Parameter%28s%29">Parameter(s)<span><a href="#method-i-vowels-label-Parameter%28s%29">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>text</code> - <code>String</code>: The text to analyze.</p>
+
+<h3 id="method-i-vowels-label-Return+Value">Return Value<span><a href="#method-i-vowels-label-Return+Value">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>Float</code>: The percentage comprising vowels.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="vowels-source">
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">vowels</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">vowels</span> = <span class="ruby-node">%w(A E I O U)</span>
+  <span class="ruby-identifier">chars</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">upcase</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-identifier">vowel_count</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">chars</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">vowel_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">vowels</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">c</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">vowel_count</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">length</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

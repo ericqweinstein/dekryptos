@@ -27,6 +27,9 @@ class Dekrypt
       opts.separator '  Supported ciphers: autokey, monoalphabetic, playfair,'
       opts.separator '  transposition, vigenere.'
       opts.separator ''
+      opts.separator 'You may also retrieve parts of the sculpture'
+      opts.separator 'ciphertext by name, e.g. dekrypt -K1'
+      opts.separator ''
 
       opts.on('-h', '--help', 'Display this screen') do
         puts opt_parser
@@ -44,27 +47,34 @@ class Dekrypt
       opts.on('-c c', '--cipher c', String, 'Enter cipher name') do |cipher|
         options.cipher = cipher
       end
+
+      opts.on('-Kn', String, 'Select Kryptos ciphertext segment') do |n|
+        self.class.send(:include, Kryptos)
+        puts Object.const_get("Kryptos::K#{n}")
+      end
     end
 
     begin opt_parser.parse!(args)
-      cipher = options.cipher.capitalize
-      self.class.send(:include, Object.const_get(cipher))
+      if options.cipher
+        cipher = options.cipher.capitalize
+        self.class.send(:include, Object.const_get(cipher))
 
-      case cipher
-      when 'Autokey'
-        puts decrypt(options.text, build_tabula_recta, options.keys.first)
-      when 'Monoalphabetic'
-        puts rot_13(options.text)
-      when 'Playfair'
-        puts decrypt(options.text, build_table(options.keys.first))
-      when 'Transposition'
-        puts decrypt(options.text, options.keys.first.to_i)
-      when 'Vigenere'
-        key_one = options.keys.first
-        key_two = options.keys.last
-        puts decrypt(options.text, build_table(key_one, key_two), key_two)
-      else
-        fail "[!] Unknown cipher: #{options.cipher}"
+        case cipher
+        when 'Autokey'
+          puts decrypt(options.text, build_tabula_recta, options.keys.first)
+        when 'Monoalphabetic'
+          puts rot_13(options.text)
+        when 'Playfair'
+          puts decrypt(options.text, build_table(options.keys.first))
+        when 'Transposition'
+          puts decrypt(options.text, options.keys.first.to_i)
+        when 'Vigenere'
+          key_one = options.keys.first
+          key_two = options.keys.last
+          puts decrypt(options.text, build_table(key_one, key_two), key_two)
+        else
+          fail "[!] Unknown cipher: #{options.cipher}"
+        end
       end
     rescue => e
       msg = "[!] An error occurred: #{e.message}\n"

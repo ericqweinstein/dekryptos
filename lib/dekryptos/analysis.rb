@@ -51,9 +51,7 @@ module Analysis
       end
     end
 
-    result.map! { |p| p.join('') }
-    result.uniq!
-    result
+    result.tap { |r| r.map! { |p| p.join('') }.uniq! }
   end
   # rubocop: enable MethodLength, UnderscorePrefixedVariableName
 

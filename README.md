@@ -1,5 +1,5 @@
 D E K Я Y P T O S
-===================
+=================
 
 [![Build Status](https://travis-ci.org/ericqweinstein/dekryptos.svg)](https://travis-ci.org/ericqweinstein/dekryptos)
 

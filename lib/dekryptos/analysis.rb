@@ -84,9 +84,7 @@ module Analysis
     chars = text.split('')
     freqs = Hash[('a'..'z').to_a.zip([0] * 26)]
 
-    chars.each do |c|
-      freqs[c] += 1
-    end
+    chars.each { |c| freqs[c] += 1 }
 
     freqs
   end
@@ -121,9 +119,8 @@ module Analysis
     vowels = %w(A E I O U)
     chars = text.upcase.split('')
     vowel_count = 0
-    chars.each do |c|
-      vowel_count += 1 if vowels.include? c
-    end
+
+    chars.each { |c| vowel_count += 1 if vowels.include? c }
 
     vowel_count.to_f / text.length
   end

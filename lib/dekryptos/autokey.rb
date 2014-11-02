@@ -96,9 +96,7 @@ module Autokey
     table = []
     row = alphabet
 
-    alphabet.each do |letter|
-      table << row.rotate(row.index(letter))
-    end
+    alphabet.each { |letter| table << row.rotate(row.index(letter)) }
 
     table
   end

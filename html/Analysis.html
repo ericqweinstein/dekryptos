@@ -163,9 +163,7 @@ UnderscorePrefixedVariableName</p>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">map!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;&#39;</span>) }
-  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">uniq!</span>
-  <span class="ruby-identifier">result</span>
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">tap</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">map!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;&#39;</span>) }.<span class="ruby-identifier">uniq!</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -207,7 +205,7 @@ otherwise.</p>
 
           
           <div class="method-source-code" id="anagram-3F-source">
-            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 70</span>
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">anagram?</span>(<span class="ruby-identifier">phrase_one</span>, <span class="ruby-identifier">phrase_two</span>)
   <span class="ruby-identifier">phrase_one</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">phrase_two</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">sort</span>
 <span class="ruby-keyword">end</span></pre>
@@ -294,15 +292,13 @@ otherwise.</p>
 
           
           <div class="method-source-code" id="frequency-source">
-            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 83</span>
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">frequency</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">text</span>  = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s*/</span>, <span class="ruby-string">&#39;&#39;</span>)
   <span class="ruby-identifier">chars</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>)
   <span class="ruby-identifier">freqs</span> = <span class="ruby-constant">Hash</span>[(<span class="ruby-string">&#39;a&#39;</span><span class="ruby-operator">..</span><span class="ruby-string">&#39;z&#39;</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">zip</span>([<span class="ruby-value">0</span>] <span class="ruby-operator">*</span> <span class="ruby-value">26</span>)]
 
-  <span class="ruby-identifier">chars</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">freqs</span>[<span class="ruby-identifier">c</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">chars</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">freqs</span>[<span class="ruby-identifier">c</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> }
 
   <span class="ruby-identifier">freqs</span>
 <span class="ruby-keyword">end</span></pre>
@@ -345,7 +341,7 @@ Index_of_coincidence).</p>
 
           
           <div class="method-source-code" id="ioc-source">
-            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 104</span>
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ioc</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">c</span>     = <span class="ruby-value">26.0</span>
   <span class="ruby-identifier">freqs</span> = <span class="ruby-identifier">frequency</span>(<span class="ruby-identifier">text</span>)
@@ -392,14 +388,13 @@ included as a vowel.)</p>
 
           
           <div class="method-source-code" id="vowels-source">
-            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 121</span>
+            <pre><span class="ruby-comment"># File lib/dekryptos/analysis.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vowels</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">vowels</span> = <span class="ruby-node">%w(A E I O U)</span>
   <span class="ruby-identifier">chars</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">upcase</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;&#39;</span>)
   <span class="ruby-identifier">vowel_count</span> = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">chars</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">vowel_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">vowels</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">c</span>
-  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">chars</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">vowel_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">vowels</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">c</span> }
 
   <span class="ruby-identifier">vowel_count</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">length</span>
 <span class="ruby-keyword">end</span></pre>

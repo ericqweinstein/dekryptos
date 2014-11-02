@@ -62,6 +62,8 @@
     <li><a href="#label-About">About</a>
     <li><a href="#label-Dependencies">Dependencies</a>
     <li><a href="#label-Installation">Installation</a>
+    <li><a href="#label-Examples">Examples</a>
+    <li><a href="#label-Ciphers">Ciphers</a>
     <li><a href="#label-Contributing">Contributing</a>
   </ul>
 </div>
@@ -85,6 +87,9 @@
 
 <h1 id="label-D+E+K+%D0%AF+Y+P+T+O+S">D E K Я Y P T O S<span><a href="#label-D+E+K+%D0%AF+Y+P+T+O+S">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 
+<p><a href="https://travis-ci.org/ericqweinstein/dekryptos"><img
+src="https://travis-ci.org/ericqweinstein/dekryptos.svg"></a></p>
+
 <h2 id="label-About">About<span><a href="#label-About">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>These are little bits o&#39; Ruby magic I&#39;ve been using to mess around
@@ -93,30 +98,38 @@ href="http://en.wikipedia.org/wiki/Kryptos">Kryptos sculpture</a>.</p>
 
 <h2 id="label-Dependencies">Dependencies<span><a href="#label-Dependencies">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
-<p>Ruby (ideally 2.0+)</p>
+<p>Ruby (2.0+).</p>
 </li></ul>
 
 <h2 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
-<p>Eventually, this&#39;ll be available on <a
-href="http://rubygems.org/">RubyGems</a> with some fancy command line bells
-&amp; whistles. Right now it&#39;s probably easiest to include the files as
-you need them:</p>
+<pre>$ gem install dekryptos</pre>
 
-<pre class="ruby">$ <span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">github</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">ericqweinstein</span><span class="ruby-operator">/</span><span class="ruby-identifier">dekryptos</span>
-$ <span class="ruby-identifier">cd</span> <span class="ruby-identifier">dekryptos</span>
-$ <span class="ruby-identifier">irb</span>
-<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">load</span> <span class="ruby-string">&#39;lib/dekryptos/vigenere.rb&#39;</span>
-=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
-<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">include</span> <span class="ruby-constant">Vigenere</span>
-=<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Object</span>
-<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">t</span> = <span class="ruby-identifier">build_table</span>(<span class="ruby-string">&#39;KRYPTOS&#39;</span>, <span class="ruby-string">&#39;PALIMPSEST&#39;</span>)
-<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-comment"># Lots of output</span>
-<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">encrypt</span>(<span class="ruby-string">&#39;ATTACKATDAWN&#39;</span>, <span class="ruby-identifier">t</span>, <span class="ruby-string">&#39;ABSCISSA&#39;</span>)
-=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;DEUVRPGIGHHB&quot;</span>
-<span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">decrypt</span>(<span class="ruby-identifier">_</span>, <span class="ruby-identifier">t</span>, <span class="ruby-string">&#39;ABSCISSA&#39;</span>)
-=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;ATTACKATDAWN&quot;</span>
-</pre>
+<h2 id="label-Examples">Examples<span><a href="#label-Examples">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<pre>$ dekrypt -t EMUFPHZLRFAXYUSDJKZLDKRNSHGNFIVJYQTQUXQBQVYUVLLTREVJYQTMKYRDMFD -k KRYPTOS,PALIMPSEST -c vigenere
+
+BETWEENSUBTLESHADINGANDTHEABSENCEOFLIGHTLIESTHENUANCEOFIQLUSION
+
+$ dekrypt -t VFPJUDEEHZWETZYVGWHKKQETGFQJNCEGGWHKK?DQMCPFQZDQMMIAGPFXHQRLGTIMVMZJANQLVKQEDAGDVFRPJUNGEUNAQZGZLECGYUXUEENJTBJLBQCRTBJDFHRRYIZETKZEMVDUFKSJHKFWHKUWQLSZFTIHHDDDUVH?DWKBFUFPWNTDFIYCUQZEREEVLDKFEZMOQQJLTTUGSYQPFEUNLAVIDXFLGGTEZ?FKZBSFDQVGOGIPUFXHHDRKFFHQNTGPUAECNUVPDJMQCLQUMUNEDFQELZZVRRGKFFVOEEXBDMVPNFQXEZLGREDNQFMPNZGLFLPMRJQYALMGNUVPDXVKPDQUMEBEDMHDAFMJGZNUPLGESWJLLAETG -k KRYPTOS,ABSCISSA -c vigenere
+
+ITWASTOTALLYINVISIBLEHOWSTHATPOSSIBLETHEYUSEDTHEEARTHSMAGNETICFIELDXTHEINFORMATIONWASGATHEREDANDTRANSMITTEDUNDERGRUUNDTOANUNKNOWNLOCATIONXDOESLANGLEYKNOWABOUTTHISTHEYSHOULDITSBURIEDOUTTHERESOMEWHEREXWHOKNOWSTHEEXACTLOCATIONONLYWWTHISWASHISLASTMESSAGEXTHIRTYEIGHTDEGREESFIFTYSEVENMINUTESSIXPOINTFIVESECONDSNORTHSEVENTYSEVENDEGREESEIGHTMINUTESFORTYFOURSECONDSWESTXLAYERTWO
+
+$ dekrypt -t ENDYAHROHNLSRHEOCPTEOIBIDYSHNAIACHTNREYULDSLLSLLNOHSNOSMRWXMNETPRNGATIHNRARPESLNNELEBLPIIACAEWMTWNDITEENRAHCTENEUDRETNHAEOETFOLSEDTIWENHAEIOYTEYQHEENCTAYCREIFTBRSPAMHHEWENATAMATEGYEERLBTEEFOASFIOTUETUAEOTOARMAEERTNRTIBSEDDNIAAHTTMSTEWPIEROAGRIEWFEBAECTDDHILCEIHSITEGOEAOSDDRYDLORITRKLMLEHAGTDHARDPNEOHMGFMFEUHEECDMRIPFEIMEHNLSSTTRTVDOHW -k 4 -c transposition
+
+YOSOEIHANULLSMMPANPNEIATINCEEATSIHOYEAEBAEAAYLESTUTMRTEITTIAEBTIITEDDILHDDOFUCIINTVWDRLETBSITYSLHSXTGHRLLPCMDEHNRHELTNIEETRTPHNMGREAOTORERSNHSPOIECHEIOSYRKETREGEEREHSTHNHNHPIYAHEDSOOWENIASELAWNEAEDNOODEETHCCFSHEAEETOIEEAENBDAMWRRFEDCSGORORLGANMFEMFESROEAHRCODNCRLLNNRNRTRENBIEWTRTUTEFEWAYQNYIRMWTTEBFFUAOATIDATEEGWADLHEADLTMAHPHMHDPMLTD
+
+$ dekrypt -t YOSOEIHANULLSMMPANPNEIATINCEEATSIHOYEAEBAEAAYLESTUTMRTEITTIAEBTIITEDDILHDDOFUCIINTVWDRLETBSITYSLHSXTGHRLLPCMDEHNRHELTNIEETRTPHNMGREAOTORERSNHSPOIECHEIOSYRKETREGEEREHSTHNHNHPIYAHEDSOOWENIASELAWNEAEDNOODEETHCCFSHEAEETOIEEAENBDAMWRRFEDCSGORORLGANMFEMFESROEAHRCODNCRLLNNRNRTRENBIEWTRTUTEFEWAYQNYIRMWTTEBFFUAOATIDATEEGWADLHEADLTMAHPHMHDPMLTD -k 48 -c transposition
+
+SLOWLYDESPARATLYSLOWLYTHEREMAINSOFPASSAGEDEBRISTHATENCUMBEREDTHELOWERPARTOFTHEDOORWAYWASREMOVEDWITHTREMBLINGHANDSIMADEATINYBREACHINTHEUPPERLEFTHANDCORNERANDTHENWIDENINGTHEHOLEALITTLEIINSERTEDTHECANDLEANDPEEREDINTHEHOTAIRESCAPINGFROMTHECHAMBERCAUSEDTHEFLAMETOFLICKERBUTPRESENTLYDETAILSOFTHEROOMWITHINEMERGEDFROMTHEMISTXCANYOUSEEANYTHINGQ</pre>
+
+<h2 id="label-Ciphers">Ciphers<span><a href="#label-Ciphers">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>There are currently files for <a href="Autokey.html">Autokey</a>, <a
+href="Monoalphabetic.html">Monoalphabetic</a> (simple ROT-13), <a
+href="Playfair.html">Playfair</a>, <a
+href="Transposition.html">Transposition</a>, and <a
+href="Vigenere.html">Vigenere</a> ciphers.</p>
 
 <h2 id="label-Contributing">Contributing<span><a href="#label-Contributing">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ol><li>

@@ -1,8 +1,8 @@
-Sat, 12 Jul 2014 14:15:56 -0400
-README.md	Tue, 24 Jun 2014 00:12:56 -0400
-lib/dekryptos.rb	Sat, 12 Jul 2014 13:58:48 -0400
-lib/dekryptos/analysis.rb	Sat, 12 Jul 2014 14:14:09 -0400
-lib/dekryptos/autokey.rb	Tue, 24 Jun 2014 00:12:56 -0400
+Sun, 02 Nov 2014 14:13:24 -0500
+README.md	Sun, 02 Nov 2014 14:07:35 -0500
+lib/dekryptos.rb	Sun, 02 Nov 2014 14:06:03 -0500
+lib/dekryptos/analysis.rb	Sun, 02 Nov 2014 14:10:12 -0500
+lib/dekryptos/autokey.rb	Sun, 02 Nov 2014 14:11:00 -0500
 lib/dekryptos/kryptos.rb	Sat, 12 Jul 2014 14:15:37 -0400
 lib/dekryptos/monoalphabetic.rb	Tue, 24 Jun 2014 00:12:56 -0400
 lib/dekryptos/playfair.rb	Tue, 24 Jun 2014 00:12:56 -0400
